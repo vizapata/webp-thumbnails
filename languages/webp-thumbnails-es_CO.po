@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Language: es_CO\n"
+"POT-Creation-Date: 2019-10-19 00:03+0000\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"PO-Revision-Date: 2019-10-19 00:05+0000\n"
+"X-Generator: Loco https://localise.biz/\n"
+"Project-Id-Version: Webp Thumbnails\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: nadie <victorzapatabedoya@hotmail.com>\n"
+"Language-Team: Español de Colombia\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Loco-Version: 2.3.1; wp-5.2.4"
+
+#. Name of the plugin
+msgid "Webp Thumbnails"
+msgstr "MIniaturas WebP"
+
+#. Description of the plugin
+msgid "Wordpress plugin to generate Webp images on media upload"
+msgstr "Generador de miniaturas de imágenes en formato webP"
+
+#. URI of the plugin
+msgid "https://magnifik.co/webp-thumbnails"
+msgstr "https://magnifik.co/webp-thumbnails"
+
+#. Author of the plugin
+msgid "Victor Zapata"
+msgstr "Victor Zapata"
+
+#. Author URI of the plugin
+msgid "https://magnifik.co/autor/vizapata"
+msgstr "https://magnifik.co/autor/vizapata"

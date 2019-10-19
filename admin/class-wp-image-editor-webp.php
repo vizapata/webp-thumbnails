@@ -28,19 +28,28 @@ class WP_Image_Editor_WEBP extends WP_Image_Editor_GD {
 		* Ej: if save as webp is not enabled, then return parent::_save();
     * Ej: add/replace extension option
 		*/
-    $estension = "webp"; // jpg.webp, png.webp, gif.webp
-    $mime_type = "image/webp";
-
-		if ( ! $filename ) {
-      $filename = $this->generate_filename( null, null, $extension );
-    }
-		$filename = str_replace(".jpg",".webp",$filename);
+    $save_as_webp = true;
 		
-		if ( 'image/webp' != $mime_type ) return parent::_save($image, $filename, $mime_type);
-		else{
-			if ( ! $this->make_image( $filename, 'imagewebp', array( $image, $filename, $this->get_quality() ) ) ) {
-				return new WP_Error( 'image_save_error', __( 'Image Editor Save Failed' ) );
+		
+		if ( $save_as_webp ) {
+			
+			$estension = "webp"; // jpg.webp, png.webp, gif.webp
+			if ( ! $filename ) {
+				$filename = $this->generate_filename( null, null, $extension );
 			}
+
+			$filenameWebp = str_replace(".jpg",".webp",$filename);
+			$filenameWebp = str_replace(".png",".webp",$filenameWebp);
+			
+			if ( ! $this->make_image( $filenameWebp, 'imagewebp', array( $image, $filenameWebp, $this->get_quality() ) ) ) {
+				return parent::_save($image, $filename, $mime_type);
+			}else{
+				$mime_type = "image/webp";
+				$filename = $filenameWebp;
+			}
+		}else{
+			// Use the parent option to save the file
+			return parent::_save($image, $filename, $mime_type);
 		}
 
 		// Set correct file permissions

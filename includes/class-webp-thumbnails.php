@@ -160,7 +160,8 @@ class Webp_Thumbnails {
 		$this->loader->add_filter('file_is_displayable_image', $plugin_admin, 'file_is_displayable_image', 10, 2);
 		$this->loader->add_filter('wp_generate_attachment_metadata', $plugin_admin, 'wp_generate_attachment_metadata', 10, 2);
 		$this->loader->add_filter('wp_image_editors', $plugin_admin, 'wp_image_editors', 10, 2);
-
+		$this->loader->add_filter('wp_editor_set_quality', $plugin_admin, 'wp_editor_set_quality', 10, 2);
+		
 	}
 
 	/**

@@ -124,9 +124,13 @@ class Webp_Thumbnails_Admin {
 	}
 
 	public function wp_image_editors( $editors=array()) {
-		require_once __DIR__ .'\\class-wp-image-editor-webp.php';
+		require_once __DIR__ . DIRECTORY_SEPARATOR .'class-wp-image-editor-webp.php';
 		array_unshift($editors, 'WP_Image_Editor_WEBP');
 		return $editors;
+	}
+
+	public function wp_editor_set_quality($default_quality, $mime_type){
+		return get_option("webp_thumbnails_quality", $default_quality);
 	}
 
 }

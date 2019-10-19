@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Webp Thumbnails
  * Plugin URI:        https://magnifik.co/webp-thumbnails
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       Wordpress plugin to generate Webp images on media upload
  * Version:           1.0.0
  * Author:            Victor Zapata
  * Author URI:        https://magnifik.co/autor/vizapata
