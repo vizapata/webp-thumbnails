@@ -161,7 +161,8 @@ class Webp_Thumbnails {
 		$this->loader->add_filter('wp_generate_attachment_metadata', $plugin_admin, 'wp_generate_attachment_metadata', 10, 2);
 		$this->loader->add_filter('wp_image_editors', $plugin_admin, 'wp_image_editors', 10, 2);
 		$this->loader->add_filter('wp_editor_set_quality', $plugin_admin, 'wp_editor_set_quality', 10, 2);
-		
+		$this->loader->add_filter('wp_handle_upload', $plugin_admin, 'wp_handle_upload', 10, 2);
+		$this->loader->add_filter('mime_types', $plugin_admin, 'mime_types', 10, 1);
 	}
 
 	/**
