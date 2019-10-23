@@ -150,7 +150,7 @@ class Webp_Thumbnails_Admin {
 		$original_file_path = $filename;
 
 		// if the save_as_webp is established for the original file
-		if($save_as_webp && $generate_webp_for_original_file){
+		if($save_as_webp && $generate_webp_for_original_file && $editor->supports_mime_type( 'image/webp' )){
 
 			$extension = 'webp';
 			$mime_type = 'image/webp';
@@ -163,7 +163,8 @@ class Webp_Thumbnails_Admin {
 			);
 
 		} // ./if
-
+		$this->log($upload);
+		error_log("saving file as mimetype {$mime_type} and filename {$filename} ");
 		$data = $editor->save($filename, $mime_type);
 
 		if ( ! is_wp_error( $data ) && $data ) {
@@ -175,10 +176,11 @@ class Webp_Thumbnails_Admin {
 				pathinfo($upload['file'], PATHINFO_FILENAME),
 				$extension
 			);
-			
+
 			$remove_original = get_option("webp_thumbnails_remove_original");
 			if($remove_original)	unlink($original_file_path);
 		}
+		$this->log($upload);
 
 		return $upload;
 	}
