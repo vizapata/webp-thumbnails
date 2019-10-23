@@ -3,7 +3,7 @@ msgstr ""
 "Language: es_CO\n"
 "POT-Creation-Date: 2019-10-19 00:03+0000\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"PO-Revision-Date: 2019-10-19 00:05+0000\n"
+"PO-Revision-Date: 2019-10-22 22:26+0000\n"
 "X-Generator: Loco https://localise.biz/\n"
 "Project-Id-Version: Webp Thumbnails\n"
 "Report-Msgid-Bugs-To: \n"
@@ -16,7 +16,7 @@ msgstr ""
 
 #. Name of the plugin
 msgid "Webp Thumbnails"
-msgstr "MIniaturas WebP"
+msgstr "Miniaturas WebP"
 
 #. Description of the plugin
 msgid "Wordpress plugin to generate Webp images on media upload"

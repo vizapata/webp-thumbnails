@@ -73,7 +73,7 @@ class Webp_Thumbnails_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/webp-thumbnails-admin.css', array(), $this->version, 'all' );
+	// 	wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/webp-thumbnails-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Webp_Thumbnails_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/webp-thumbnails-admin.js', array( 'jquery' ), $this->version, false );
+	//	wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/webp-thumbnails-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -127,38 +127,34 @@ class Webp_Thumbnails_Admin {
 	}
 
 	public function wp_handle_upload($upload, $context){
-		$supported = array('image/jpeg','image/png','image/gif');
-		$generate_webp_for_original_file = get_option("webp_thumbnails_generate_for_original_file", true);
-
-		// Supported mime types
-		// TODO: Change for $editor->test
-		if($generate_webp_for_original_file && in_array($upload['type'], $supported)){
-			
-			$width=1200;
-			$height=1200;
-			$crop = false;
-			$set_max_dimentions = get_option("webp_thumbnails_max_dimentions", true);
+		$generate_webp_for_original_file = get_option("webp_thumbnails_generate_for_original_file");
+		$save_as_webp = get_option('webp_thumbnails_save_as_webp');
+		
+		if($save_as_webp && $generate_webp_for_original_file){
+			$set_max_dimentions = get_option("webp_thumbnails_set_max_dimentions");
+			$max_dimentions = get_option("webp_thumbnails_max_dimentions");
 
 			$editor = wp_get_image_editor( $upload['file'] , array('mime_type'=>$upload['type']));
+			
+			if(is_wp_error( $editor ) ) return $upload;
 
-			if(is_wp_error( $editor ) ) return $null;
-
-			if ( $set_max_dimentions && ($width || $height ) ) {
-				if ( is_wp_error( $editor->resize( $width, $height, $crop ) ) ) {
-					return false;
+			if ( $set_max_dimentions && isset($max_dimentions['width']) && isset($max_dimentions['height']) ) {
+				if ( is_wp_error( $editor->resize( $max_dimentions['width'], $max_dimentions['height'], false ) ) ) {
+					return $upload;
 				}
 			}
-		
 			$original = $upload['file'];
+			$extension = 'webp';
 
 			$filename = sprintf('%s%s%s.%s',
 				pathinfo($original, PATHINFO_DIRNAME) ,
 				DIRECTORY_SEPARATOR,
 				pathinfo($original, PATHINFO_FILENAME),
-				'webp'
+				$extension
 			);
 
 			$data = $editor->save($filename, 'image/webp');
+
 			if ( ! is_wp_error( $data ) && $data ) {
 				$upload['file'] = $data['path'];
 
@@ -169,7 +165,7 @@ class Webp_Thumbnails_Admin {
 					'webp'
 				);
 				
-				$remove_original = get_option("webp_thumbnails_remove_original", true);
+				$remove_original = get_option("webp_thumbnails_remove_original");
 				if($remove_original)	unlink($original);
 			}
 		}

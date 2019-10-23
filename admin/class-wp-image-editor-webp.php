@@ -25,7 +25,12 @@ class WP_Image_Editor_WEBP extends WP_Image_Editor_GD {
 	 */
 	public static function supports_mime_type( $mime_type ) {
 		$support = parent::supports_mime_type( $mime_type ) ;
-		if(!$support && function_exists('imagecreatefromwebp') && function_exists('imagewebp')){
+		if(
+			!$support 
+			&& function_exists('imagecreatefromwebp') 
+			&& function_exists('imagewebp') 
+			&& get_option('webp_thumbnails_save_as_webp')
+		){
 			$image_types = imagetypes();
 			$support =  'image/webp'==$mime_type  && ( $image_types & IMG_WEBP ) != 0;
 		}
@@ -41,27 +46,18 @@ class WP_Image_Editor_WEBP extends WP_Image_Editor_GD {
 	protected function _save( $image, $filename = null, $mime_type = null ) {
 		list( $filename, $extension, $mime_type ) = $this->get_output_format( $filename, $mime_type );
 
-		/* TODO: Load config from options
-		* Ej: if save as webp is not enabled, then return parent::_save();
-    * Ej: add/replace extension option
-		*/
-		$save_as_webp = get_option('webp_thumbnails_save_as_webp', false);
-		$save_as_webp = true;
-		
-		if ( $save_as_webp ) {
-			$extension = 'webp'; // jpg.webp, png.webp, gif.webp
-			
+		$save_as_webp = get_option('webp_thumbnails_save_as_webp');
+
+		if ( $save_as_webp && $extension == 'webp' ) {
+
 			if ( ! $filename ) {
 				$filename = $this->generate_filename( null, null, $extension );
 			}
 
-			
-
-			$extension_management = get_option('webp_thumbnails_extension_management', 'REPLACE');
-
 			$filenameWebp = $filename;
-			$extension = 'webp'; // jpg.webp, png.webp, gif.webp
-
+/*
+			$extension_management = get_option('webp_thumbnails_extension_management', 'REPLACE');
+			
 			if($mime_type != 'image/webp'){
 				switch($extension_management){
 					case 'REPLACE':
@@ -74,7 +70,8 @@ class WP_Image_Editor_WEBP extends WP_Image_Editor_GD {
 					break;
 				}
 			}
-
+			*/
+			
 			if ( ! $this->make_image( $filenameWebp, 'imagewebp', array( $image, $filenameWebp, $this->get_quality() ) ) ) {
 				return parent::_save($image, $filename, $mime_type);
 			}else{

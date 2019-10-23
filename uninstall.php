@@ -28,4 +28,13 @@
 // If uninstall not called from WordPress, then exit.
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
+
+	// delete options
+	delete_option("webp_thumbnails_quality");
+	delete_option("webp_thumbnails_generate_for_original_file");
+	delete_option("webp_thumbnails_set_max_dimentions");
+	delete_option("webp_thumbnails_max_dimentions");
+	delete_option("webp_thumbnails_remove_original");
+	delete_option('webp_thumbnails_save_as_webp');
+	delete_option('webp_thumbnails_extension_management');
 }
