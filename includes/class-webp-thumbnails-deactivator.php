@@ -20,7 +20,8 @@
  * @subpackage Webp_Thumbnails/includes
  * @author     Victor Zapata <vizapata@gmail.com>
  */
-class Webp_Thumbnails_Deactivator {
+class Webp_Thumbnails_Deactivator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -29,8 +30,7 @@ class Webp_Thumbnails_Deactivator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function deactivate() {
-
+	public static function deactivate()
+	{
 	}
-
 }

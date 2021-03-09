@@ -24,7 +24,8 @@
  * @subpackage Webp_Thumbnails/includes
  * @author     Victor Zapata <vizapata@gmail.com>
  */
-class Webp_Thumbnails_i18n {
+class Webp_Thumbnails_i18n
+{
 
 
 	/**
@@ -32,16 +33,12 @@ class Webp_Thumbnails_i18n {
 	 *
 	 * @since    1.0.0
 	 */
-	public function load_plugin_textdomain() {
-
+	public function load_plugin_textdomain()
+	{
 		load_plugin_textdomain(
 			'webp-thumbnails',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			dirname(dirname(plugin_basename(__FILE__))) . '/languages/'
 		);
-
 	}
-
-
-
 }

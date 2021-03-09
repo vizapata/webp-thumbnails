@@ -20,7 +20,8 @@
  * @subpackage Webp_Thumbnails/includes
  * @author     Victor Zapata <vizapata@gmail.com>
  */
-class Webp_Thumbnails_Activator {
+class Webp_Thumbnails_Activator
+{
 
 	/**
 	 * Short Description. (use period)
@@ -29,15 +30,15 @@ class Webp_Thumbnails_Activator {
 	 *
 	 * @since    1.0.0
 	 */
-	public static function activate() {
+	public static function activate()
+	{
 		// set default options
 		update_option("webp_thumbnails_quality", 75);
 		update_option("webp_thumbnails_generate_for_original_file", true);
 		update_option("webp_thumbnails_set_max_dimentions", true);
-		update_option("webp_thumbnails_max_dimentions", array('width'=>1280, 'height'=>1280));
+		update_option("webp_thumbnails_max_dimentions", array('width' => 1280, 'height' => 1280));
 		update_option("webp_thumbnails_remove_original", false);
 		update_option('webp_thumbnails_save_as_webp', true);
 		update_option('webp_thumbnails_extension_management', 'REPLACE'); // replace, append
 	}
-
 }
